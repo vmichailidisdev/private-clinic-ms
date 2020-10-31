@@ -1,0 +1,56 @@
+<%- include('./partials/header_start.ejs'); -%>
+<title>Private Clinic Login</title>
+<%- include('./partials/header_end.ejs'); -%>
+
+<nav class="navbar navbar-light bg-light px-0">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="/"><i class="fas fa-hospital-symbol fa-lg"></i> Private Clinic</a>
+    <div>
+      <a role="button" class="btn btn-sm btn-primary" href="/register">Register</a>
+      <a role="button" class="btn btn-sm btn-outline-secondary active" href="/login"><span class="sr-only">(current)</span>Log In</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-3">
+  <%- include('./partials/error_messages.ejs') %>
+  <form action="/login" method="post" class="needs-validation" autocomplete="on" novalidate>
+    <label for="email">Email</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-addon"><i class="fas fa-envelope"></i></span>
+      </div>
+      <input type="text" name="email" id="email" title="Provide a registered email (example@email.com)." class="form-control rounded-right" aria-describedby="email-addon" data-toggle="tooltip" data-placement="top" autofocus required>
+      <div class="valid-feedback">
+        Looks good.
+      </div>
+      <div class="invalid-feedback">
+        Please provide a valid email.
+      </div>
+    </div>
+    <label for="password">Password</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-addon"><i class="fas fa-lock"></i></span>
+      </div>
+      <input type="password" name="password" id="password" title="Password is between 8 and 16 alphanumerics long." class="form-control" aria-describedby="password-addon" data-toggle="tooltip" data-placement="top" pattern="[a-zA-Z0-9]{8,16}" maxlength="16" required>
+      <div class="input-group-append">
+        <span class="input-group-text bg-white rounded-right" id="password-toggle-addon" role="button"><i class="far fa-eye"></i></span>
+      </div>
+      <div class="valid-feedback">
+        Looks good.
+      </div>
+      <div class="invalid-feedback">
+        Please provide a valid password.
+      </div>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn btn-outline-primary">Log In</button>
+    </div>
+  </form>
+</div>
+
+<%- include('./partials/footer_start.ejs'); -%>
+<%- include('./partials/libs_bundle.ejs'); -%>
+<script src="/javascripts/login.js"></script>
+<%- include('./partials/footer_end.ejs'); -%>

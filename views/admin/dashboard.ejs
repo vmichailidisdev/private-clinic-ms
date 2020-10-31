@@ -1,0 +1,243 @@
+<%- include('../partials/header_start.ejs'); -%>
+<title>Private Clinic Dashboard</title>
+<%- include('../partials/header_end.ejs'); -%>
+
+<div class="d-flex" id="wrapper">
+
+  <div class="border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading"><a href="/admin"><span class="sr-only">(current)</span><i class="fas fa-hospital-symbol mr-2"></i>Private Clinic</a></div>
+    <div class="list-group list-group-flush">
+      <a class="list-group-item list-group-item-action" data-toggle="collapse" href="#collapseUsers" role="button" aria-expanded="false" aria-controls="collapseUsers">
+        <span class="d-flex justify-content-between align-items-center">
+          <div><i class="fas fa-users mr-3"></i>Users</div>
+          <i class="fas fa-caret-down"></i>
+        </span>
+      </a>
+      <div class="list-group list-group-flush collapse" id="collapseUsers">
+        <a href="/admin/clients" class="list-group-item list-group-item-action"><span class="pl-3">Clients</span></a>
+        <a href="/admin/secs" class="list-group-item list-group-item-action"><span class="pl-3">Secretary</span></a>
+        <a href="/admin/docs" class="list-group-item list-group-item-action"><span class="pl-3">Doctors</span></a>
+      </div>
+      <a href="/admin/appts" class="list-group-item list-group-item-action"><i class="far fa-calendar-check mr-3"></i>Appointments</a>
+      <a href="/admin/rooms" class="list-group-item list-group-item-action"><i class="fas fa-procedures mr-3"></i>Rooms</a>
+      <a href="/admin/meds" class="list-group-item list-group-item-action"><i class="fas fa-pills mr-3"></i>Medicines</a>
+    </div>
+  </div>
+
+  <div id="page-content-wrapper">
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light border-bottom">
+      <div id="menu-toggle">
+        <button class="btn btn-primary">Toggle Menu</button>
+        <button class="navbar-toggler" type="button"><i class="fas fa-bars"></i></button>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item dropdown align-items-baseline">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg mr-2"></i>
+              <%= user.email %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/admin/settings">Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Log Out</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+      <div class="row mx-0 mr-3">
+        <div class="col-12 col-xl-6 px-0">
+          <div class="mt-3 ml-3 border rounded"><canvas id="users"></canvas></div>
+        </div>
+        <div class="col-12 col-xl-6 px-0">
+          <div class="mt-3 ml-3 border rounded"><canvas id="appts"></canvas></div>
+        </div>
+        <div class="col-12 col-xl-6 px-0">
+          <div class="mt-3 ml-3 border rounded"><canvas id="rooms"></canvas></div>
+        </div>
+        <div class="col-12 col-xl-6 px-0">
+          <div class="mt-3 ml-3 border rounded"><canvas id="meds"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%- include('../partials/libs_bundle.ejs'); -%>
+<script src="/javascripts/Chart.min.js"></script>
+<script>
+  Chart.defaults.global.defaultFontSize = 16;
+  Chart.defaults.global.defaultFontStyle = 'bold';
+  const usersCanvas = document.getElementById('users');
+  const usersChart = new Chart(usersCanvas, {
+    type: 'horizontalBar',
+    data: {
+      labels: ['Total', 'Males', 'Females', 'Clients', 'Secretary', 'Doctors'],
+      datasets: [{
+        data: [<%= stats.users %>, <%= stats.males %>, <%= stats.users - stats.males %>, <%= stats.clients %>, <%= stats.secs %>, <%= stats.docs %>],
+        backgroundColor: [
+          'rgb(7,42,51)',
+          'rgb(4,64,65)',
+          'rgb(11,123,130)',
+          'rgb(125, 175, 175)',
+          'rgb(135,200,200)',
+          'rgb(187,241,241)',
+        ],},]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Users',
+        fontSize: 20,
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: false
+          },
+        }]
+      },
+    },
+  });
+  const apptsCanvas = document.getElementById('appts');
+  const apptsChart = new Chart(apptsCanvas, {
+    type: 'horizontalBar',
+    data: {
+      labels: ['Total', 'Males', 'Females'],
+      datasets: [{
+        data: [<%= stats.appts %>, <%= stats.apptsMales %>, <%= stats.appts - stats.apptsMales %>],
+        backgroundColor: [
+          'rgb(7,42,51)',
+          'rgb(4,64,65)',
+          'rgb(11,123,130)',
+        ],},]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Appointments',
+        fontSize: 20,
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: false
+          },
+        }]
+      },
+    },
+  });
+
+  const roomsCanvas = document.getElementById('rooms');
+  const roomsChart = new Chart(roomsCanvas, {
+    type: 'horizontalBar',
+    data: {
+      labels: ['Total', 'Males', 'Females'],
+      datasets: [{
+        data: [<%= stats.rooms %>, <%= stats.roomsMales %>, <%= stats.rooms - stats.roomsMales %>,],
+        backgroundColor: [
+          'rgb(7,42,51)',
+          'rgb(4,64,65)',
+          'rgb(11,123,130)',
+        ],},]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Rooms',
+        fontSize: 20,
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: false
+          },
+        }]
+      },
+    },
+  });
+
+  const medsCanvas = document.getElementById('meds');
+  const medsChart = new Chart(medsCanvas, {
+    type: 'horizontalBar',
+    data: {
+      labels: ['Total', 'Males', 'Females'],
+      datasets: [{
+        data: [<%= stats.meds %>,<%= stats.medsMales %>,<%= stats.meds - stats.medsMales %>,],
+        backgroundColor: [
+          'rgb(7,42,51)',
+          'rgb(4,64,65)',
+          'rgb(11,123,130)',
+        ],},]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Medicines',
+        fontSize: 20,
+      },
+      legend: {
+        display: false,
+      },
+      scales: {
+        xAxes: [{
+          gridLines: {
+            display: false
+          },
+          ticks: {
+            beginAtZero: true
+          }
+        }],
+        yAxes: [{
+          gridLines: {
+            display: false
+          },
+        }]
+      },
+    },
+  });
+
+
+</script>
+<%- include('../partials/footer_end.ejs'); -%>

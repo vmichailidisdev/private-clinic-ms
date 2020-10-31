@@ -1,0 +1,25 @@
+<%- include('./partials/header_start.ejs') %>
+<title>Private Clinic</title>
+<%- include('./partials/header_end.ejs') %>
+<nav class="navbar navbar-light bg-light px-0">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="/"><i class="fas fa-hospital-symbol fa-lg"></i> Private Clinic</a>
+    <div>
+      <a role="button" class="btn btn-sm btn-primary" href="/register">Register</a>
+      <a role="button" class="btn btn-sm btn-outline-secondary" href="/login">Log In</a>
+    </div>
+  </div>
+</nav>
+<div class="container my-3">
+  <div class="jumbotron text-center">
+    <h1 class="display-4">Private Clinic MS</h1>
+    <p class="lead">Fast, unopinionated, minimalist management system for private clinics.</p>
+    <hr class="my-4">
+    <p>In order to use our services you need to have an account.</p>
+    <a class="btn btn-primary" href="/register" role="button">Register</a>
+  </div>
+</div>
+
+<%- include('./partials/footer_start.ejs') %>
+<%- include('./partials/libs_bundle.ejs') %>
+<%- include('./partials/footer_end.ejs') %>

@@ -1,0 +1,266 @@
+// Font Awesome
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/v4-shims.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
+@import '../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss';
+
+// Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+// Bootstrap Configuration
+
+$enable-responsive-font-sizes: true;
+
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+
+$blue:   #007788;
+$indigo: #5f084b;
+$purple: #472255;
+$pink:   #de2160;
+$red:    #870e39;
+$orange: #f38602;
+$yellow: #f5c563;
+$green:  #83DB8E;
+$teal:   #159897;
+$cyan:   #21ADA8;
+
+$secondary: $gray-600;
+
+$chart-color-1: #072a33;
+$chart-color-2: #044041;
+$chart-color-3: #0b7b82;
+$chart-color-4: #7dafaf;
+$chart-color-5: #85b5bb;
+$chart-color-6: #e5f3f3;
+
+$body-bg: $gray-100;
+$body-color: $gray-700;
+
+// Navbar
+
+$navbar-light-active-color: $gray-700;
+
+// Jumpotron
+
+$jumbotron-bg: $gray-100;
+$jumbotron-color: $gray-700;
+$link-hover-color: $cyan;
+
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-base: 'Lato', sans-serif;
+
+// Buttons + Forms
+//
+// Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
+
+$input-btn-padding-y: 0.3rem;
+$input-btn-padding-x: 0.6rem;
+
+// Cards
+
+$card-bg: $gray-200;
+$card-color: $gray-700;
+
+// List group
+
+$list-group-color: $gray-100;
+$list-group-bg: $blue;
+$list-group-border-width: none;
+
+$list-group-action-hover-color: $gray-100;
+$list-group-hover-bg: darken($blue, 5%);
+
+$list-group-active-color: $gray-100;
+$list-group-active-bg: darken($blue, 5%);
+
+$list-group-action-active-color: $gray-100;
+$list-group-action-active-bg: darken($blue, 5%);
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding: .6rem;
+
+$table-color: $body-color;
+$table-bg: $gray-100;
+
+$table-accent-bg: darken($table-bg, 5) !default;;
+$table-hover-color: $table-color;
+$table-hover-bg: darken($table-bg, 15) !default;
+
+$table-head-bg: $gray-700;
+$table-head-color: $gray-100;
+
+$table-striped-order: even;
+
+// Bootstrap scss
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+// Custom Css
+
+// Sidebar
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  background-color: $blue;
+  height: 100vh;
+  margin-left: -15rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+
+  .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  .list-group {
+    width: 15rem;
+  }
+
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+#page-content-wrapper {
+  width: 100vw;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  margin-left: 15rem;
+}
+
+#menu-toggle  {
+.btn {
+    display: none;
+}
+  .navbar-toggler {
+  background: $blue;
+  }
+
+  .navbar-toggler i {
+    font-size: 1.25rem;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    white-space: nowrap;
+    color: $gray-100;
+    background: $blue;
+  }
+
+}
+
+.navbar-toggler i {
+  font-size: 1.25rem;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  white-space: nowrap;
+}
+
+.sidebar-heading {
+  a {
+    color: $gray-100;
+    font-weight: bold;
+
+    &:hover {
+      color: $gray-100;
+      text-decoration: none !important;
+    }
+  }
+}
+
+// Media Queries
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    margin-left: 15rem;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    margin-left: 0;
+  }
+
+  #menu-toggle .btn {
+    display: inline-block !important;
+  }
+
+}
+
+@media (min-width: 992px) {
+}
+
+@media (min-width: 1200px) {
+}
+
+
+.card {
+
+  .card-header {
+    padding: .5rem 1rem;
+  }
+
+  .card-body {
+    padding: .5rem 1rem;
+  }
+
+  .card-title {
+    margin-bottom: 0;
+  }
+
+  &.client {
+    &:hover {
+      border-color: $blue;
+    }
+
+    a:hover {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+
+}
+

@@ -1,0 +1,42 @@
+{
+  "name": "private_clinic_cms",
+  "version": "1.0.0",
+  "description": "Fast, unopinionated, minimalist content management system for private clinics.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "keywords": [
+    "private clinic",
+    "content management system",
+    "cms"
+  ],
+  "author": "Vasileios Michailidis",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.4",
+    "sass": "^1.27.2"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "@popperjs/core": "^2.5.3",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.10.7",
+    "number-to-words": "^1.2.4",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}

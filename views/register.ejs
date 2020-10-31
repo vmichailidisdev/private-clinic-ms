@@ -1,0 +1,146 @@
+<%- include('./partials/header_start.ejs'); -%>
+<title>Private Clinic</title>
+<%- include('./partials/header_end.ejs'); -%>
+
+<nav class="navbar navbar-light bg-light px-0">
+  <div class="container">
+    <a class="navbar-brand font-weight-bold" href="/"><i class="fas fa-hospital-symbol fa-lg"></i> Private Clinic</a>
+    <div>
+      <a role="button" class="btn btn-sm btn-primary active" href="/register"><span class="sr-only">(current)</span>Register</a>
+      <a role="button" class="btn btn-sm btn-outline-secondary" href="/login">Log In</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container my-3">
+  <%- include('./partials/error_messages.ejs') %>
+  <form action="/register" method="post" class="needs-validation" autocomplete="on" novalidate>
+    <label for="email">Email</label>
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="email-addon"><i class="fas fa-envelope"></i></span>
+      </div>
+      <input type="text" name="email" id="email" title="Provide a valid email (example@email.com)." class="form-control rounded-right" aria-describedby="email-addon" data-toggle="tooltip" data-placement="top" autofocus required>
+      <div class="valid-feedback">
+        Looks good.
+      </div>
+      <div class="invalid-feedback">
+        Please provide a valid email.
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="password-addon"><i class="fas fa-lock"></i></span>
+          </div>
+          <input type="password" name="password" id="password" title="Password must be between 8 and 16 alphanumerics long." class="form-control" aria-describedby="password-addon" data-toggle="tooltip" data-placement="top" pattern="[a-zA-Z0-9]{8,16}" maxlength="16" required>
+          <div class="input-group-append">
+            <span class="input-group-text bg-white rounded-right" id="password-toggle-addon" role="button"><i class="far fa-eye"></i></span>
+          </div>
+          <div class="valid-feedback">
+            Looks good.
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid password.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="confirm-password">Confirm Password</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="password-addon"><i class="fas fa-lock"></i></span>
+          </div>
+          <input type="password" name="confirmPassword" id="confirm-password" title="Password must be between 8 and 16 alphanumerics long." class="form-control" aria-describedby="password-addon" data-toggle="tooltip" data-placement="top" pattern="[a-zA-Z0-9]{8,16}" maxlength="16" required>
+          <div class="input-group-append">
+            <span class="input-group-text bg-white rounded-right" id="confirm-password-toggle-addon" role="button"><i class="far fa-eye"></i></span>
+          </div>
+          <div class="valid-feedback">
+            Looks good.
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid password.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="firstname">Legal Firstname</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="firstname-addon"><i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" name="firstname" id="firstname" title="Legal last name must be in characters only, below 100." class="form-control rounded-right" aria-describedby="lastname-addon" data-toggle="tooltip" maxlength="100" pattern="[a-zA-Z]{,100}" required>
+          <div class="valid-feedback">
+            Looks good.
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid legal first name.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="lastname">Legal Lastname</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="firstname-addon"><i class="fas fa-user"></i></span>
+          </div>
+          <input type="text" name="lastname" id="lastname" title="Legal first name must be in characters only, below 100." class="form-control rounded-right" aria-describedby="firstname-addon" data-toggle="tooltip" data-placement="top" maxlength="100" pattern="[a-zA-Z]{,100}" required>
+          <div class="valid-feedback">
+            Looks good.
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid legal first name.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-3">
+        <label for="birth">Date of birth</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="date-addon"><i class="fas fa-calendar"></i></span>
+          </div>
+          <input type="date"  id="birth" name="birth" class="form-control rounded-right" aria-describedby="date-addon" required>
+          <div class="valid-feedback">
+            Looks good.
+          </div>
+          <div class="invalid-feedback">
+            Please provide a valid date of birth.
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6 mb-3">
+        <label>Gender</label>
+        <div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" name="gender" id="male" class="custom-control-input" value="male" required>
+            <label class="custom-control-label" for="male">Male</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="gender" id="female" class="custom-control-input" value="female" required>
+            <label class="custom-control-label" for="female">Female</label>
+            <div class="valid-feedback">
+              Looks good.
+            </div>
+            <div class="invalid-feedback">
+              Please choose your gender.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-right">
+      <button type="submit" class="btn btn-outline-primary">Create New Account</button>
+    </div>
+  </form>
+</div>
+
+<%- include('./partials/footer_start.ejs'); -%>
+<%- include('./partials/libs_bundle.ejs'); -%>
+<script src="/javascripts/register.js"></script>
+<%- include('./partials/footer_end.ejs'); -%>
